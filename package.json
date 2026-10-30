@@ -1,0 +1,18 @@
+{
+  "name": "zcc-scientific-calculator",
+  "version": "1.0.0",
+  "description": "Scientific Calculator embedded app for Zoom Contact Center Agent Desktop",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "echo 'Static assets — no build step required'"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
