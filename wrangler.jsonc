@@ -1,0 +1,10 @@
+{
+  "name": "zcc-scientific-calculator",
+  "compatibility_date": "2025-01-01",
+  // Serve static assets from public/
+  "assets": {
+    "directory": "./public"
+  },
+  // Worker handles API routes; static assets served directly
+  "main": "src/worker.js"
+}
