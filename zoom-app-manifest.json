@@ -1,0 +1,31 @@
+{
+  "name": "ZCC Scientific Calculator",
+  "display_name": "Scientific Calculator",
+  "description": "Full-featured scientific calculator for Zoom Contact Center agents. Includes arithmetic, trigonometry, logarithms, powers, roots, factorial, permutations/combinations, constants (π, e), unit conversions, and hex/bin/oct base conversions.",
+  "short_description": "Scientific calculator for ZCC Agent Desktop",
+  "version": "1.0.0",
+  "type": "general",
+  "category": "Productivity",
+  "publish": false,
+  "surfaces": {
+    "contact_center": {
+      "agent_desktop": {
+        "enabled": true,
+        "panel": "side"
+      }
+    }
+  },
+  "oauth": {
+    "redirect_urls": [],
+    "scopes": [
+      "contact_center:read:admin",
+      "contact_center:write:admin"
+    ]
+  },
+  "features": {
+    "embedded_browser": true
+  },
+  "requirements": {
+    "zoom_contact_center": true
+  }
+}
