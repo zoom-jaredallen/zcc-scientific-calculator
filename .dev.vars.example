@@ -1,0 +1,3 @@
+# Copy to .dev.vars and fill in your Zoom OAuth credentials
+ZOOM_CLIENT_ID=your_zoom_client_id_here
+ZOOM_CLIENT_SECRET=your_zoom_client_secret_here
