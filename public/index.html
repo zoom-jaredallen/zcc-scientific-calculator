@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZCC Scientific Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="calculator" class="calculator">
+    <header class="calc-header">
+      <div class="calc-title">
+        <svg class="zoom-icon" viewBox="0 0 24 24" width="20" height="20">
+          <circle cx="12" cy="12" r="11" fill="#0B5CFF"/>
+          <path d="M7 9.5v5a1 1 0 001 1h5l3-3v-4a1 1 0 00-1-1H9l-2 2z" fill="#fff"/>
+        </svg>
+        <span>Scientific Calculator</span>
+      </div>
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="deg">DEG</button>
+        <button class="mode-tab" data-mode="rad">RAD</button>
+      </div>
+    </header>
+
+    <!-- Display -->
+    <div class="display-area">
+      <div class="expression" id="expression"></div>
+      <div class="result" id="result">0</div>
+      <div class="memory-indicator" id="memIndicator"></div>
+    </div>
+
+    <!-- Tab bar for modes -->
+    <div class="tab-bar">
+      <button class="tab active" data-panel="scientific">Scientific</button>
+      <button class="tab" data-panel="convert">Convert</button>
+      <button class="tab" data-panel="base">Base-N</button>
+    </div>
+
+    <!-- Scientific Panel -->
+    <div class="panel active" id="panel-scientific">
+      <div class="btn-grid scientific-grid">
+        <!-- Row 1: Memory & Clear -->
+        <button class="btn fn" data-action="mc">MC</button>
+        <button class="btn fn" data-action="mr">MR</button>
+        <button class="btn fn" data-action="ms">MS</button>
+        <button class="btn fn" data-action="m+">M+</button>
+        <button class="btn fn" data-action="m-">M−</button>
+
+        <!-- Row 2: Trig -->
+        <button class="btn fn" data-action="sin">sin</button>
+        <button class="btn fn" data-action="cos">cos</button>
+        <button class="btn fn" data-action="tan">tan</button>
+        <button class="btn fn" data-action="asin">sin⁻¹</button>
+        <button class="btn fn" data-action="acos">cos⁻¹</button>
+
+        <!-- Row 3: More trig & log -->
+        <button class="btn fn" data-action="atan">tan⁻¹</button>
+        <button class="btn fn" data-action="log">log</button>
+        <button class="btn fn" data-action="ln">ln</button>
+        <button class="btn fn" data-action="exp">eˣ</button>
+        <button class="btn fn" data-action="10x">10ˣ</button>
+
+        <!-- Row 4: Powers & roots -->
+        <button class="btn fn" data-action="x2">x²</button>
+        <button class="btn fn" data-action="x3">x³</button>
+        <button class="btn fn" data-action="xy">xʸ</button>
+        <button class="btn fn" data-action="sqrt">√x</button>
+        <button class="btn fn" data-action="cbrt">∛x</button>
+
+        <!-- Row 5: Combinatorics & constants -->
+        <button class="btn fn" data-action="fact">x!</button>
+        <button class="btn fn" data-action="nPr">nPr</button>
+        <button class="btn fn" data-action="nCr">nCr</button>
+        <button class="btn fn" data-action="pi">π</button>
+        <button class="btn fn" data-action="e">e</button>
+
+        <!-- Row 6: Extra -->
+        <button class="btn fn" data-action="abs">|x|</button>
+        <button class="btn fn" data-action="inv">1/x</button>
+        <button class="btn fn" data-action="pct">%</button>
+        <button class="btn fn" data-action="toggle">±</button>
+        <button class="btn fn" data-action="rand">Rand</button>
+
+        <!-- Row 7-10: Standard keypad -->
+        <button class="btn clear" data-action="clear">AC</button>
+        <button class="btn clear" data-action="backspace">⌫</button>
+        <button class="btn op" data-action="open">(</button>
+        <button class="btn op" data-action="close">)</button>
+        <button class="btn op" data-action="÷">÷</button>
+
+        <button class="btn num" data-action="7">7</button>
+        <button class="btn num" data-action="8">8</button>
+        <button class="btn num" data-action="9">9</button>
+        <button class="btn op" data-action="×">×</button>
+        <button class="btn op" data-action="mod">mod</button>
+
+        <button class="btn num" data-action="4">4</button>
+        <button class="btn num" data-action="5">5</button>
+        <button class="btn num" data-action="6">6</button>
+        <button class="btn op" data-action="-">−</button>
+        <button class="btn op" data-action="floor">⌊x⌋</button>
+
+        <button class="btn num" data-action="1">1</button>
+        <button class="btn num" data-action="2">2</button>
+        <button class="btn num" data-action="3">3</button>
+        <button class="btn op" data-action="+">+</button>
+        <button class="btn op" data-action="ceil">⌈x⌉</button>
+
+        <button class="btn num zero" data-action="0">0</button>
+        <button class="btn num" data-action=".">.</button>
+        <button class="btn equals" data-action="=">=</button>
+        <button class="btn op" data-action="ans">ANS</button>
+      </div>
+    </div>
+
+    <!-- Unit Conversion Panel -->
+    <div class="panel" id="panel-convert">
+      <div class="convert-area">
+        <div class="convert-group">
+          <label>Category</label>
+          <select id="convertCategory">
+            <option value="length">Length</option>
+            <option value="weight">Weight / Mass</option>
+            <option value="temperature">Temperature</option>
+            <option value="speed">Speed</option>
+            <option value="area">Area</option>
+            <option value="volume">Volume</option>
+            <option value="pressure">Pressure</option>
+            <option value="energy">Energy</option>
+            <option value="data">Data Storage</option>
+            <option value="time">Time</option>
+          </select>
+        </div>
+        <div class="convert-row">
+          <div class="convert-input-group">
+            <input type="number" id="convertFrom" placeholder="Value" value="1">
+            <select id="convertFromUnit"></select>
+          </div>
+          <div class="convert-arrow">⇄</div>
+          <div class="convert-input-group">
+            <input type="number" id="convertTo" placeholder="Result" readonly>
+            <select id="convertToUnit"></select>
+          </div>
+        </div>
+        <button class="btn convert-btn" id="convertBtn">Convert</button>
+      </div>
+    </div>
+
+    <!-- Base-N Panel -->
+    <div class="panel" id="panel-base">
+      <div class="base-area">
+        <div class="base-display">
+          <div class="base-row"><span class="base-label">DEC</span><span class="base-value" id="baseDec">0</span></div>
+          <div class="base-row"><span class="base-label">HEX</span><span class="base-value" id="baseHex">0</span></div>
+          <div class="base-row"><span class="base-label">OCT</span><span class="base-value" id="baseOct">0</span></div>
+          <div class="base-row"><span class="base-label">BIN</span><span class="base-value" id="baseBin">0</span></div>
+        </div>
+        <div class="base-input-group">
+          <select id="baseInputType">
+            <option value="dec">Decimal</option>
+            <option value="hex">Hexadecimal</option>
+            <option value="oct">Octal</option>
+            <option value="bin">Binary</option>
+          </select>
+          <input type="text" id="baseInput" placeholder="Enter a number" value="0">
+          <button class="btn convert-btn" id="baseConvertBtn">Convert</button>
+        </div>
+        <div class="base-hex-pad">
+          <button class="btn hex-btn" data-hex="A">A</button>
+          <button class="btn hex-btn" data-hex="B">B</button>
+          <button class="btn hex-btn" data-hex="C">C</button>
+          <button class="btn hex-btn" data-hex="D">D</button>
+          <button class="btn hex-btn" data-hex="E">E</button>
+          <button class="btn hex-btn" data-hex="F">F</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- History drawer -->
+    <div class="history-toggle">
+      <button class="btn history-btn" id="historyBtn">History ▾</button>
+    </div>
+    <div class="history-panel" id="historyPanel">
+      <div class="history-list" id="historyList">
+        <div class="history-empty">No calculations yet</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
